@@ -2,7 +2,7 @@
 import AppKit
 import Observation
 
-#if !APP_STORE
+#if !APP_STORE && !CN_LOCALIZATION
     import Sparkle
 #endif
 
@@ -26,6 +26,9 @@ final class Updater {
 
     #if APP_STORE
         // The App Store updates this edition.
+        init() { sourceDirectory = nil }
+    #elseif CN_LOCALIZATION
+        // The Chinese fork never checks the upstream Sparkle feed.
         init() { sourceDirectory = nil }
     #else
         /// Sparkle, for builds that don't come from a checkout on this Mac.
@@ -89,13 +92,17 @@ final class Updater {
 
     /// Checks the appcast now and shows what Sparkle finds.
     func checkForUpdates() {
-        #if !APP_STORE
+        #if !APP_STORE && !CN_LOCALIZATION
             if let sparkle {
                 sparkle.checkForUpdates(nil)
                 return
             }
         #endif
-        openReleases()
+        #if CN_LOCALIZATION
+            NSWorkspace.shared.open(URL(string: "https://github.com/wangaoji/ILoveNotch/releases")!)
+        #else
+            openReleases()
+        #endif
     }
 
     func showLog() { NSWorkspace.shared.open(Self.log) }
