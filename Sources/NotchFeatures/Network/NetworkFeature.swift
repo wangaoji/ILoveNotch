@@ -37,9 +37,9 @@ public final class NetworkFeature: NotchFeature {
 
         public var title: String {
             switch self {
-            case .always: "Always"
-            case .transfers: "While Downloading"
-            case .off: "Never"
+            case .always: AppLanguage.localized("Always")
+            case .transfers: AppLanguage.localized("While Downloading")
+            case .off: AppLanguage.localized("Never")
             }
         }
     }

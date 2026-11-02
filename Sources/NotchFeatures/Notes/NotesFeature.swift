@@ -14,9 +14,9 @@ public enum NoteSort: String, CaseIterable, Identifiable, Sendable {
 
     public var name: String {
         switch self {
-        case .modified: "Last Edited"
-        case .created: "Date Created"
-        case .title: "Title"
+        case .modified: AppLanguage.localized("Last Edited")
+        case .created: AppLanguage.localized("Date Created")
+        case .title: AppLanguage.localized("Title")
         }
     }
 }

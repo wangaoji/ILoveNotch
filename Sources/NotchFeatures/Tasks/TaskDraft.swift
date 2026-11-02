@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 import Foundation
+import NotchCore
 
 /// A task's priority in Reminders' terms. EventKit stores 1–4 as high, 5 as medium, 6–9 as low, and
 /// 0 as none; Reminders shows them as "!!!", "!!", and "!".
@@ -32,10 +33,10 @@ public enum TaskPriority: Int, CaseIterable, Comparable, Hashable, Sendable {
 
     public var name: String {
         switch self {
-        case .none: "None"
-        case .low: "Low"
-        case .medium: "Medium"
-        case .high: "High"
+        case .none: AppLanguage.localized("None")
+        case .low: AppLanguage.localized("Low")
+        case .medium: AppLanguage.localized("Medium")
+        case .high: AppLanguage.localized("High")
         }
     }
 
@@ -51,10 +52,10 @@ public enum TaskRepeat: String, CaseIterable, Hashable, Sendable {
 
     public var name: String {
         switch self {
-        case .daily: "Every day"
-        case .weekly: "Every week"
-        case .monthly: "Every month"
-        case .yearly: "Every year"
+        case .daily: AppLanguage.localized("Every day")
+        case .weekly: AppLanguage.localized("Every week")
+        case .monthly: AppLanguage.localized("Every month")
+        case .yearly: AppLanguage.localized("Every year")
         }
     }
 }
@@ -152,12 +153,12 @@ public enum TaskGroup: Int, CaseIterable, Comparable, Hashable, Sendable {
 
     public var title: String {
         switch self {
-        case .overdue: "Overdue"
-        case .today: "Today"
-        case .tomorrow: "Tomorrow"
-        case .thisWeek: "Next 7 Days"
-        case .later: "Later"
-        case .someday: "No Date"
+        case .overdue: AppLanguage.localized("Overdue")
+        case .today: AppLanguage.localized("Today")
+        case .tomorrow: AppLanguage.localized("Tomorrow")
+        case .thisWeek: AppLanguage.localized("Next 7 Days")
+        case .later: AppLanguage.localized("Later")
+        case .someday: AppLanguage.localized("No Date")
         }
     }
 
@@ -192,9 +193,9 @@ public enum DueLabel {
         let offset = calendar.dateComponents([.day], from: today, to: calendar.startOfDay(for: due)).day ?? 0
         let day: String =
             switch offset {
-            case 0: "Today"
-            case 1: "Tomorrow"
-            case -1: "Yesterday"
+            case 0: AppLanguage.localized("Today")
+            case 1: AppLanguage.localized("Tomorrow")
+            case -1: AppLanguage.localized("Yesterday")
             case 2..<7: due.formatted(.dateTime.weekday(.wide))
             default:
                 calendar.component(.year, from: due) == calendar.component(.year, from: now)

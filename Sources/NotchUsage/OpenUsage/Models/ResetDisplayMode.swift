@@ -4,6 +4,7 @@
 // swift-format-ignore-file
 
 import Foundation
+import NotchCore
 
 /// Global choice for how reset countdowns read across every bounded row: a relative duration
 /// ("Resets in 4d 17h") or a concrete wall-clock time ("Resets tomorrow at 9:00 AM"). Ported from the
@@ -15,8 +16,8 @@ enum ResetDisplayMode: String, Hashable, Sendable, CaseIterable {
 
     var label: String {
         switch self {
-        case .relative: return "Countdown"
-        case .absolute: return "Exact Time"
+        case .relative: return AppLanguage.localized("Countdown")
+        case .absolute: return AppLanguage.localized("Exact Time")
         }
     }
 

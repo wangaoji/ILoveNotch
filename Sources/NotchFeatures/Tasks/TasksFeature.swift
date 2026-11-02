@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 import EventKit
 import NotchCore
+import NotchCore
 import Observation
 import SwiftUI
 
@@ -109,11 +110,11 @@ public enum DueChoice: String, CaseIterable, Identifiable, Sendable {
 
     public var name: String {
         switch self {
-        case .today: "Today"
-        case .tomorrow: "Tomorrow"
-        case .weekend: "This Weekend"
-        case .nextWeek: "Next Week"
-        case .none: "No Date"
+        case .today: AppLanguage.localized("Today")
+        case .tomorrow: AppLanguage.localized("Tomorrow")
+        case .weekend: AppLanguage.localized("This Weekend")
+        case .nextWeek: AppLanguage.localized("Next Week")
+        case .none: AppLanguage.localized("No Date")
         }
     }
 

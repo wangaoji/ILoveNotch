@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 import Foundation
+import NotchCore
 
 /// A note's colour, stored by name so other Markdown apps see a readable value.
 public enum NoteColor: String, CaseIterable, Identifiable, Sendable {
@@ -13,7 +14,7 @@ public enum NoteColor: String, CaseIterable, Identifiable, Sendable {
     case pink
 
     public var id: String { rawValue }
-    public var name: String { rawValue.capitalized }
+    public var name: String { AppLanguage.localized(rawValue.capitalized) }
 }
 
 /// One note: a Markdown file. Its colour and pin live in a small front matter block at the top of the
