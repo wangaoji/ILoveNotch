@@ -14,9 +14,7 @@ extension MediaFeature {
             }
             Toggle(isOn: $media.waveformFollowsAudio) {
                 Text("Waveform follows the music")
-                Text(
-                    "Listens to your Mac's audio output while Media is open and playing. It's analyzed on this "
-                        + "Mac as it plays and never recorded. macOS asks for permission the first time.")
+                Text("Listens to your Mac's audio output while Media is open and playing. It's analyzed on this Mac as it plays and never recorded. macOS asks for permission the first time.")
             }
         }
     }
@@ -34,9 +32,7 @@ extension CalendarFeature {
             }
             Toggle(isOn: $calendar.countsDownToMeetings) {
                 Text("Count down to meetings")
-                Text(
-                    "Five minutes before a meeting with a Zoom, Google Meet, Teams, Webex, Whereby, Jitsi, or "
-                        + "FaceTime link, the closed notch counts down to it. Join from the Calendar tab.")
+                Text("Five minutes before a meeting with a Zoom, Google Meet, Teams, Webex, Whereby, Jitsi, or FaceTime link, the closed notch counts down to it. Join from the Calendar tab.")
             }
         }
         .onAppear(perform: calendar.refreshAccess)
@@ -98,9 +94,7 @@ private struct NotesSettings: View {
                 }
             } label: {
                 Text("Folder: \(notes.usesCustomFolder ? notes.directory.lastPathComponent : "On this Mac")")
-                Text(
-                    "Pick a folder in iCloud Drive to reach your notes from the Files app or a Markdown app on "
-                        + "iPhone. Notes on this Mac move to the new folder.")
+                Text("Pick a folder in iCloud Drive to reach your notes from the Files app or a Markdown app on iPhone. Notes on this Mac move to the new folder.")
             }
             Picker("Sort notes by", selection: $notes.sort) {
                 ForEach(NoteSort.allCases) { sort in Text(sort.name).tag(sort) }
@@ -169,9 +163,7 @@ private struct ClipboardSettings: View {
                     set: { $0 ? clipboard.startRecording() : clipboard.stopRecording() })
             ) {
                 Text("Keep a history of what you copy")
-                Text(
-                    "Looks at the clipboard twice a second while it's on. Skips passwords, anything marked private, "
-                        + "and copies from password managers. Kept on this Mac only.")
+                Text("Looks at the clipboard twice a second while it's on. Skips passwords, anything marked private, and copies from password managers. Kept on this Mac only.")
             }
             if clipboard.isRecording, clipboard.access != .allowed {
                 LabeledContent("Paste from other apps") {
@@ -202,11 +194,7 @@ private struct NetworkSettings: View {
                 ForEach(NetworkFeature.ClosedNotch.allCases) { Text($0.title).tag($0) }
             } label: {
                 Text("Show speed in the menu bar")
-                Text(
-                    "Beside the closed notch. While Downloading shows it once a download or upload runs at 1 MB/s or "
-                        + "more for a few seconds, says how much it moved when it's done, and hides again; it checks "
-                        + "every 3 seconds. Always reads the speed every second. Never shows nothing there, and reads "
-                        + "the speed only while the tab is open.")
+                Text("Beside the closed notch. While Downloading shows it once a download or upload runs at 1 MB/s or more for a few seconds, says how much it moved when it's done, and hides again; it checks every 3 seconds. Always reads the speed every second. Never shows speed beside the closed notch, and reads the speed only while the tab is open.")
             }
             LabeledContent {
                 Button("Clear History\u{2026}", role: .destructive) { confirmsClear = true }
