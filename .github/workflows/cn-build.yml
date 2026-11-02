@@ -20,10 +20,15 @@ jobs:
         run: xcodebuild -version && swift --version
       - name: Install XcodeGen
         run: brew install xcodegen
-      - name: Build Release
+      - name: Generate project
+        run: make project
+      - name: Build universal Release
         run: |
-          make build CONFIGURATION=Release ARCH=arm64
-          make build CONFIGURATION=Release ARCH=x86_64
+          xcodebuild -project OpenNotch.xcodeproj -scheme OpenNotch -configuration Release \
+            -destination 'platform=macOS' -derivedDataPath .build/xcode \
+            ARCHS='arm64 x86_64' ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='-' \
+            OPENNOTCH_COMMIT="${GITHUB_SHA::7}" build
       - name: Package universal DMG
         run: |
           mkdir -p dist
