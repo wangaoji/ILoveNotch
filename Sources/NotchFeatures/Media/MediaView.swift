@@ -133,8 +133,8 @@ struct MediaView: View {
             .animation(.easeInOut(duration: 0.16), value: media.artwork)
         }
         .buttonStyle(PressableButtonStyle())
-        .help("Open the player")
-        .accessibilityLabel("Open the player")
+        .help(AppLanguage.localized("Open the player"))
+        .accessibilityLabel(AppLanguage.localized("Open the player"))
     }
 
     private func details(_ now: NowPlaying, inline: Bool) -> some View {

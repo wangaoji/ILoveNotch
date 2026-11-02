@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 import AppKit
+import NotchCore
 import NotchFeatures
 import SwiftUI
 
@@ -133,7 +134,7 @@ public struct SoundView: View {
             Image(systemName: "waveform")
                 .font(.system(size: 16, weight: .medium))
                 .foregroundStyle(.white.opacity(0.45))
-            Text("Apps playing sound show up here")
+            Text(AppLanguage.localized("Apps playing sound show up here"))
                 .font(.system(size: 10))
                 .foregroundStyle(.white.opacity(0.55))
                 .multilineTextAlignment(.center)
@@ -145,8 +146,8 @@ public struct SoundView: View {
     private var permission: some View {
         HStack(spacing: 6) {
             Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(.yellow)
-            Text("Allow System Audio Recording to change app volumes").lineLimit(1)
-            Button("Open Settings") { NSWorkspace.shared.open(.privacySettings("Privacy_AudioCapture")) }
+            Text(AppLanguage.localized("Allow System Audio Recording to change app volumes")).lineLimit(1)
+            Button(AppLanguage.localized("Open Settings")) { NSWorkspace.shared.open(.privacySettings("Privacy_AudioCapture")) }
                 .buttonStyle(.plain)
                 .fontWeight(.semibold)
         }
@@ -173,8 +174,8 @@ private struct DeviceList: View {
         let current = (direction == .output ? mixer.output : mixer.input)?.id
         VStack(spacing: 6) {
             HStack(spacing: 0) {
-                segment(.output, symbol: "speaker.wave.2.fill", title: "Output")
-                segment(.input, symbol: "mic.fill", title: "Input")
+                segment(.output, symbol: "speaker.wave.2.fill", title: AppLanguage.localized("Output"))
+                segment(.input, symbol: "mic.fill", title: AppLanguage.localized("Input"))
             }
             .padding(2)
             .background(.white.opacity(0.07), in: Capsule())
@@ -393,9 +394,7 @@ private struct MixerSettings: View {
                 .disabled(mixer.levels.isEmpty && mixer.muted.isEmpty)
         } label: {
             Text("App volumes")
-            Text(
-                "Turn each app up, down, or off in the Sound tab. It uses the waveform's system audio permission, "
-                    + "and nothing is recorded.")
+            Text(AppLanguage.localized("Turn each app up, down, or off in the Sound tab. It uses the waveform's system audio permission, and nothing is recorded."))
         }
     }
 }

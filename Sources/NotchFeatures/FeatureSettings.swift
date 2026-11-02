@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+import NotchCore
 import SwiftUI
 
 // Per-feature settings, shown under each feature's toggle in the Settings window.
@@ -111,8 +112,8 @@ private struct NotesSettings: View {
         panel.canChooseFiles = false
         panel.canChooseDirectories = true
         panel.canCreateDirectories = true
-        panel.prompt = "Use Folder"
-        panel.message = "Choose where ILoveNotch keeps your notes."
+        panel.prompt = AppLanguage.localized("Use Folder")
+        panel.message = AppLanguage.localized("Choose where ILoveNotch keeps your notes.")
         let iCloudDrive = FileManager.default.homeDirectoryForCurrentUser
             .appending(path: "Library/Mobile Documents/com~apple~CloudDocs", directoryHint: .isDirectory)
         if FileManager.default.fileExists(atPath: iCloudDrive.path) { panel.directoryURL = iCloudDrive }

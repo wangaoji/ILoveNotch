@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 import AppKit
 import Foundation
+import NotchCore
 import SwiftUI
 
 /// Where OpenNotch keeps its local data: ~/Library/Application Support/OpenNotch.
@@ -67,14 +68,14 @@ public struct FeatureUnavailableView: View {
     private func content(symbol shown: Bool) -> some View {
         VStack(spacing: 6) {
             if shown { Image(systemName: symbol).font(.system(size: 22, weight: .semibold)).opacity(0.8) }
-            Text(title).font(.headline)
-            Text(message)
+            Text(AppLanguage.localized(title)).font(.headline)
+            Text(AppLanguage.localized(message))
                 .font(.caption)
                 .foregroundStyle(.white.opacity(0.6))
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: 320)
             if let action {
-                Button(action.label, action: action.perform)
+                Button(AppLanguage.localized(action.label), action: action.perform)
                     .buttonStyle(.plain)
                     .font(.caption.weight(.semibold))
                     .padding(.horizontal, 10)

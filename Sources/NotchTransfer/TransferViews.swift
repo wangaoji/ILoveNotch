@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 import AppKit
 import CoreImage.CIFilterBuiltins
+import NotchCore
 import NotchFeatures
 import SwiftUI
 
@@ -168,7 +169,7 @@ private struct CapsuleButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text(title)
+            Text(AppLanguage.localized(title))
                 .font(.callout.weight(.semibold))
                 .padding(.horizontal, 14)
                 .padding(.vertical, 5)
@@ -483,9 +484,7 @@ private struct TransferSettings: View {
                 ForEach(TransferFeature.ReceiveMode.allCases) { Text($0.title).tag($0) }
             } label: {
                 Text("Receive from Android")
-                Text(
-                    "Phones on the same Wi-Fi can send you files with Quick Share, set to Everyone. Nothing is saved until "
-                        + "you accept in the notch.")
+                Text(AppLanguage.localized("Phones on the same Wi-Fi can send you files with Quick Share, set to Everyone. Nothing is saved until you accept in the notch."))
             }
             if transfer.receiveMode != .always {
                 LabeledContent {

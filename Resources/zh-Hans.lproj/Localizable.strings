@@ -405,3 +405,11 @@
 "Pink" = "粉色";
 "Countdown" = "倒计时";
 "Exact Time" = "具体时间";
+
+/* Localization for runtime strings and concatenated feature copy. */
+"Use Folder" = "使用文件夹";
+"Choose where ILoveNotch keeps your notes." = "选择 ILoveNotch 保存笔记的位置。";
+"Output" = "输出";
+"Input" = "输入";
+"Open the player" = "打开播放器";
+"Plays it" = "播放";

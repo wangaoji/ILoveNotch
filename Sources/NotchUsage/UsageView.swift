@@ -573,10 +573,7 @@ private struct UsageOnboarding: View {
             }
             VStack(spacing: 3) {
                 Text("Your AI plans at a glance").font(.headline)
-                Text(
-                    "Add the tools you use; the ones in color are signed in on this Mac. Each reads only its own "
-                        + "sign-in and sends it only to its own service."
-                )
+                Text(AppLanguage.localized("Add the tools you use; the ones in color are signed in on this Mac. Each reads only its own sign-in and sends it only to its own service."))
                 .font(.caption)
                 .foregroundStyle(.white.opacity(0.6))
                 .multilineTextAlignment(.center)

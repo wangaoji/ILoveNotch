@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+import NotchCore
 import SwiftUI
 
 extension UsageFeature {
@@ -31,10 +32,7 @@ private struct UsageSettings: View {
             } header: {
                 Text("Providers")
             } footer: {
-                Text(
-                    "Each provider reads only the sign-in its own tool keeps on this Mac and sends it only to its "
-                        + "own service."
-                )
+                Text(AppLanguage.localized("Each provider reads only the sign-in its own tool keeps on this Mac and sends it only to its own service."))
                 .foregroundStyle(.secondary)
             }
             // On one section only: a modifier on the group would go on each section, and detect three times.
@@ -54,10 +52,7 @@ private struct UsageSettings: View {
                     ForEach(UsageFeature.BackgroundRefresh.allCases) { Text($0.title).tag($0) }
                 }
             } footer: {
-                Text(
-                    "Spend estimates use public price lists from LiteLLM, models.dev, and OpenUsage. Usage code "
-                        + "adapted from OpenUsage; provider logos from theSVG."
-                )
+                Text(AppLanguage.localized("Spend estimates use public price lists from LiteLLM, models.dev, and OpenUsage. Usage code adapted from OpenUsage; provider logos from theSVG."))
                 .foregroundStyle(.secondary)
             }
         }
