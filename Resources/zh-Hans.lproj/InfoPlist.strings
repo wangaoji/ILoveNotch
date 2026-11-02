@@ -1,0 +1,9 @@
+"NSAudioCaptureUsageDescription" = "ILoveNotch 会监听当前播放的音频，使媒体波形随音乐变化，并允许你单独调整各应用音量。音频仅在此 Mac 本地处理，不会录制。";
+"NSAppleEventsUsageDescription" = "ILoveNotch 可在灵动岛中控制音乐和 Spotify：随机播放、循环播放、查看下一首曲目以及重新播放曲目。它只与当前正在播放的应用通信。";
+"NSLocalNetworkUsageDescription" = "ILoveNotch 会在你的 Wi-Fi 网络中查找 Android 手机，以便通过 Quick Share 共享文件。仅使用本地网络，不访问互联网。";
+"NSDesktopFolderUsageDescription" = "ILoveNotch 会保留你拖到暂存架中的文件，以便稍后拖出。";
+"NSDocumentsFolderUsageDescription" = "ILoveNotch 会保留你拖到暂存架中的文件，以便稍后拖出。";
+"NSDownloadsFolderUsageDescription" = "ILoveNotch 会保留你拖到暂存架中的文件，以便稍后拖出。";
+"NSCalendarsFullAccessUsageDescription" = "ILoveNotch 在灵动岛中显示当天日程，添加你在此创建的日程和时间块，并修改或删除你选择的项目。日历数据保留在此 Mac 上。";
+"NSRemindersFullAccessUsageDescription" = "ILoveNotch 在灵动岛中显示、添加和完成你的提醒事项。";
+"NSCameraUsageDescription" = "当“摄像头镜像”标签页打开时，ILoveNotch 会显示摄像头画面。不会录制。";

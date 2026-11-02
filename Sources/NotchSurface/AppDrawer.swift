@@ -46,15 +46,15 @@ struct AppDrawer: View {
         } action: {
             open(feature)
         }
-        .help(off ? "Turn \(feature.title) on and open it" : "Open \(feature.title)")
-        .accessibilityLabel(off ? "\(feature.title), off" : feature.title)
+        .help(off ? AppLanguage.localizedFormat("Turn %@ on and open it", feature.title) : AppLanguage.localizedFormat("Open %@", feature.title))
+        .accessibilityLabel(off ? AppLanguage.localizedFormat("%@, off", feature.title) : feature.title)
         .accessibilityAddTraits(feature == current ? .isSelected : [])
         .contextMenu {
             if inRow {
                 Button("Keep in the Drawer Only") { preferences.moveToDrawer(feature) }
                     .disabled(preferences.rowTabs.count <= 1)  // the row keeps at least one tab
             } else {
-                Button(off ? "Turn On and Add to the Row" : "Add to the Row") {
+                Button(AppLanguage.localized(off ? "Turn On and Add to the Row" : "Add to the Row")) {
                     preferences.place(feature, at: preferences.rowTabs.count)
                 }
             }
@@ -62,7 +62,7 @@ struct AppDrawer: View {
     }
 
     private func editTile(compact: Bool) -> some View {
-        DrawerTile(title: "Edit", compact: compact, dimmed: false) { hovering in
+        DrawerTile(title: AppLanguage.localized("Edit"), compact: compact, dimmed: false) { hovering in
             let shape = RoundedRectangle(cornerRadius: compact ? 9 : 11, style: .continuous)
             TablerIcon(name: "pencil", size: compact ? 17 : 19)
                 .frame(width: compact ? 38 : 46, height: compact ? 30 : 38)

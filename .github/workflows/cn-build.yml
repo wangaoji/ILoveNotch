@@ -1,0 +1,38 @@
+name: ILoveNotch CN macOS build
+
+on:
+  push:
+    branches: [cn-localization]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-26
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+      - name: Toolchain
+        run: xcodebuild -version && swift --version
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Build Release
+        run: |
+          make build CONFIGURATION=Release ARCH=arm64
+          make build CONFIGURATION=Release ARCH=x86_64
+      - name: Package universal DMG
+        run: |
+          mkdir -p dist
+          ditto .build/xcode/Build/Products/Release/ILoveNotch.app "dist/ILoveNotch 中文版.app"
+          ln -s /Applications dist/Applications
+          hdiutil create -volname "ILoveNotch 中文版" -srcfolder dist -fs HFS+ -format UDZO -ov "ILoveNotch-CN.dmg"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ILoveNotch-CN-macOS
+          path: ILoveNotch-CN.dmg
+          if-no-files-found: error
+          retention-days: 30

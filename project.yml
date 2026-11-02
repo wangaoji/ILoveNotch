@@ -50,6 +50,9 @@ targets:
   OpenNotch:
     type: application
     platform: macOS
+    resources:
+      - path: Resources/zh-Hans.lproj/Localizable.strings
+      - path: Resources/zh-Hans.lproj/InfoPlist.strings
     sources:
       - path: App
         excludes: ["Info.plist", "AppStore/**"]

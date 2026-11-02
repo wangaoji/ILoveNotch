@@ -14,23 +14,23 @@ public enum NotchAnimationStyle: String, CaseIterable, Identifiable, Sendable {
 
     public var title: String {
         switch self {
-        case .spring: "Spring"
-        case .jelly: "Jelly"
-        case .pop: "Pop"
-        case .smooth: "Smooth"
-        case .snappy: "Snappy"
-        case .instant: "Instant"
+        case .spring: AppLanguage.localized("Spring")
+        case .jelly: AppLanguage.localized("Jelly")
+        case .pop: AppLanguage.localized("Pop")
+        case .smooth: AppLanguage.localized("Smooth")
+        case .snappy: AppLanguage.localized("Snappy")
+        case .instant: AppLanguage.localized("Instant")
         }
     }
 
     public var summary: String {
         switch self {
-        case .spring: "A balanced spring with a hint of bounce."
-        case .jelly: "Squashes wide, stretches down, and wobbles into place."
-        case .pop: "Springs up from slightly smaller with a quick bounce."
-        case .smooth: "Eases in and out, no bounce."
-        case .snappy: "Quick and crisp."
-        case .instant: "No animation."
+        case .spring: AppLanguage.localized("A balanced spring with a hint of bounce.")
+        case .jelly: AppLanguage.localized("Squashes wide, stretches down, and wobbles into place.")
+        case .pop: AppLanguage.localized("Springs up from slightly smaller with a quick bounce.")
+        case .smooth: AppLanguage.localized("Eases in and out, no bounce.")
+        case .snappy: AppLanguage.localized("Quick and crisp.")
+        case .instant: AppLanguage.localized("No animation.")
         }
     }
 }
@@ -46,8 +46,8 @@ public enum NotchTheme: String, CaseIterable, Identifiable, Sendable {
 
     public var title: String {
         switch self {
-        case .black: "Black"
-        case .glass: "Glass"
+        case .black: AppLanguage.localized("Black")
+        case .glass: AppLanguage.localized("Glass")
         }
     }
 }
@@ -60,8 +60,8 @@ public enum NotchlessStyle: String, CaseIterable, Identifiable, Sendable {
 
     public var title: String {
         switch self {
-        case .notch: "Notch"
-        case .pill: "Pill"
+        case .notch: AppLanguage.localized("Notch")
+        case .pill: AppLanguage.localized("Pill")
         }
     }
 }

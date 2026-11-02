@@ -34,19 +34,19 @@ public enum FeatureID: String, CaseIterable, Hashable, Sendable {
 
     public var title: String {
         switch self {
-        case .media: "Media"
-        case .sound: "Sound"
-        case .shelf: "Shelf"
-        case .clipboard: "Clipboard"
-        case .calendar: "Calendar"
-        case .tasks: "Tasks"
-        case .notes: "Notes"
-        case .shortcuts: "Shortcuts"
-        case .timer: "Timer"
-        case .network: "Network"
-        case .mirror: "Mirror"
-        case .usage: "AI Usage"
-        case .agents: "Agents"
+        case .media: AppLanguage.localized("Media")
+        case .sound: AppLanguage.localized("Sound")
+        case .shelf: AppLanguage.localized("Shelf")
+        case .clipboard: AppLanguage.localized("Clipboard")
+        case .calendar: AppLanguage.localized("Calendar")
+        case .tasks: AppLanguage.localized("Tasks")
+        case .notes: AppLanguage.localized("Notes")
+        case .shortcuts: AppLanguage.localized("Shortcuts")
+        case .timer: AppLanguage.localized("Timer")
+        case .network: AppLanguage.localized("Network")
+        case .mirror: AppLanguage.localized("Mirror")
+        case .usage: AppLanguage.localized("AI Usage")
+        case .agents: AppLanguage.localized("Agents")
         }
     }
 }

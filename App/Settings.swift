@@ -79,6 +79,7 @@ struct SettingsView: View {
     let previewAnimation: () -> Void
     let featureSettings: (FeatureID) -> AnyView?
     @Bindable var selection: SettingsSelection
+    @AppStorage(AppLanguage.defaultsKey) private var appLanguage = "system"
 
     var body: some View {
         NavigationSplitView {
@@ -105,6 +106,7 @@ struct SettingsView: View {
         }
         .frame(width: Self.size.width)
         .frame(minHeight: 460, idealHeight: Self.size.height)
+        .environment(\.locale, AppLanguage.locale(for: appLanguage))
     }
 
     @ViewBuilder private var page: some View {
@@ -123,11 +125,11 @@ struct SettingsView: View {
 extension SettingsSelection.Page {
     var title: String {
         switch self {
-        case .about: "About"
-        case .general: "General"
-        case .appearance: "Appearance"
-        case .displays: "Displays"
-        case .activities: "Live Activities"
+        case .about: AppLanguage.localized("About")
+        case .general: AppLanguage.localized("General")
+        case .appearance: AppLanguage.localized("Appearance")
+        case .displays: AppLanguage.localized("Displays")
+        case .activities: AppLanguage.localized("Live Activities")
         case .feature(let feature): feature.title
         }
     }
@@ -162,26 +164,26 @@ extension SettingsSelection.Page {
     /// One line under its name at the top of the page.
     fileprivate var summary: String {
         switch self {
-        case .about: "The app, its version, and where to find help."
-        case .general: "Launch at login, keyboard shortcuts, and starting over."
-        case .appearance: "How the open notch looks, and how it opens and closes."
-        case .displays: "Which displays get a notch, and what the ones without one show."
-        case .activities: "What the closed notch shows for a moment when something changes."
+        case .about: AppLanguage.localized("The app, its version, and where to find help.")
+        case .general: AppLanguage.localized("Launch at login, keyboard shortcuts, and starting over.")
+        case .appearance: AppLanguage.localized("How the open notch looks, and how it opens and closes.")
+        case .displays: AppLanguage.localized("Which displays get a notch, and what the ones without one show.")
+        case .activities: AppLanguage.localized("What the closed notch shows for a moment when something changes.")
         case .feature(let feature):
             switch feature {
-            case .media: "What's playing in any app, with artwork, controls, and a waveform."
-            case .sound: "Your speakers and microphone, and every app's volume on its own fader."
-            case .shelf: "Files you drop on the notch, at hand to drag out, preview, or share."
-            case .clipboard: "A searchable history of what you copy, with favorites that stay."
-            case .calendar: "Today's events, with a Join button and a countdown for calls."
-            case .tasks: "Your Reminders, synced to your iPhone through iCloud."
-            case .notes: "Markdown notes that save as you type."
-            case .shortcuts: "The shortcuts you make in the Shortcuts app, a click away."
-            case .timer: "Timers, a stopwatch with laps, and Keep Awake."
-            case .network: "Your download and upload speed, and how much you've used."
-            case .mirror: "Your camera, on only while its tab is open."
-            case .usage: "How much of each AI coding plan you've used."
-            case .agents: "When Claude Code or Codex needs you or finishes, in the closed notch."
+            case .media: AppLanguage.localized("What's playing in any app, with artwork, controls, and a waveform.")
+            case .sound: AppLanguage.localized("Your speakers and microphone, and every app's volume on its own fader.")
+            case .shelf: AppLanguage.localized("Files you drop on the notch, at hand to drag out, preview, or share.")
+            case .clipboard: AppLanguage.localized("A searchable history of what you copy, with favorites that stay.")
+            case .calendar: AppLanguage.localized("Today's events, with a Join button and a countdown for calls.")
+            case .tasks: AppLanguage.localized("Your Reminders, synced to your iPhone through iCloud.")
+            case .notes: AppLanguage.localized("Markdown notes that save as you type.")
+            case .shortcuts: AppLanguage.localized("The shortcuts you make in the Shortcuts app, a click away.")
+            case .timer: AppLanguage.localized("Timers, a stopwatch with laps, and Keep Awake.")
+            case .network: AppLanguage.localized("Your download and upload speed, and how much you've used.")
+            case .mirror: AppLanguage.localized("Your camera, on only while its tab is open.")
+            case .usage: AppLanguage.localized("How much of each AI coding plan you've used.")
+            case .agents: AppLanguage.localized("When Claude Code or Codex needs you or finishes, in the closed notch.")
             }
         }
     }
@@ -287,12 +289,20 @@ private struct GeneralPage: View {
     @Bindable var preferences: NotchPreferences
     let notchKey: HotKey
     let clipboardKey: HotKey
+    @AppStorage(AppLanguage.defaultsKey) private var appLanguage = "system"
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
     @State private var loginError: String?
     @State private var confirmsReset = false
 
     var body: some View {
         SettingsPage(page: .general) {
+            Section("Language") {
+                Picker("Language", selection: $appLanguage) {
+                    Text("Follow System").tag("system")
+                    Text("Simplified Chinese").tag("zh-Hans")
+                    Text("English").tag("en")
+                }
+            }
             Section {
                 // A closure, not a method reference: converting the method to Binding's isolated
                 // setter type crashes the Swift 6.3 compiler in IRGen.

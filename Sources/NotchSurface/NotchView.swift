@@ -36,6 +36,7 @@ struct NotchView: View {
     let metrics: NotchMetrics
     let preferences: NotchPreferences
     let content: NotchContent
+    @AppStorage(AppLanguage.defaultsKey) private var appLanguage = "system"
     /// Editing the tab row, in place of the open tab (`TabEditor`).
     @State var editing = false
     /// Every app as a grid, over the open tab (`AppDrawer`).
@@ -88,6 +89,7 @@ struct NotchView: View {
         } keyframes: { _ in
             squashKeyframes(opening: presentation.openTab != nil)
         }
+        .environment(\.locale, AppLanguage.locale(for: appLanguage))
         .environment(\.colorScheme, .dark)  // the notch is always black
         .gradientSymbols()
         .contentShape(outline)
@@ -273,16 +275,16 @@ struct NotchView: View {
                         tabBar(selected: tab)
                         headerButton(
                             drawer ? "layout-grid-filled" : "layout-grid",
-                            label: drawer ? "Back to \(tab.title)" : "All Apps", lit: drawer
+                            label: drawer ? AppLanguage.localizedFormat("Back to %@", tab.title) : AppLanguage.localized("All Apps"), lit: drawer
                         ) { showDrawer(!drawer) }
                         .background(GlassPlatter(shape: Circle()))
                         .padding(.leading, Self.appsGap)
                         Spacer(minLength: 0)
                         HStack(spacing: 0) {
-                            headerButton(pinned ? "pin-filled" : "pin", label: pinned ? "Unpin" : "Pin", lit: pinned) {
+                            headerButton(pinned ? "pin-filled" : "pin", label: AppLanguage.localized(pinned ? "Unpin" : "Pin"), lit: pinned) {
                                 engine.send(.togglePin)
                             }
-                            headerButton("settings", label: "Settings") { content.openSettings() }
+                            headerButton("settings", label: AppLanguage.localized("Settings")) { content.openSettings() }
                         }
                         .background(GlassPlatter(shape: Capsule()))
                     }
