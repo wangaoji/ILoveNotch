@@ -65,6 +65,10 @@ jobs:
           mkdir -p "$HOME/Applications"
           ditto "$APP" "$HOME/Applications/ILoveNotch 中文版.app"
           test -x "$HOME/Applications/ILoveNotch 中文版.app/Contents/MacOS/ILoveNotch"
+          open "$HOME/Applications/ILoveNotch 中文版.app"
+          sleep 5
+          pgrep -x ILoveNotch
+          pkill -x ILoveNotch || true
       - name: Package universal DMG
         run: |
           mkdir -p dist
