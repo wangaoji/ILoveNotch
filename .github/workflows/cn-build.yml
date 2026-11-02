@@ -48,8 +48,13 @@ jobs:
         run: |
           APP=".build/xcode/Build/Products/Release/ILoveNotch.app"
           test -d "$APP"
-          test -f "$APP/Contents/Resources/zh-Hans.lproj/Localizable.strings"
-          test -f "$APP/Contents/Resources/zh-Hans.lproj/InfoPlist.strings"
+          # XcodeGen can flatten individual .strings resources. Preserve the localization bundle
+          # directory explicitly so Bundle.localizedString can resolve zh-Hans at runtime.
+          mkdir -p "$APP/Contents/Resources/zh-Hans.lproj"
+          ditto Resources/zh-Hans.lproj/ "$APP/Contents/Resources/zh-Hans.lproj/"
+          test -s "$APP/Contents/Resources/zh-Hans.lproj/Localizable.strings"
+          test -s "$APP/Contents/Resources/zh-Hans.lproj/InfoPlist.strings"
+          codesign --force --deep --sign - --options runtime --timestamp=none "$APP"
           plutil -lint "$APP/Contents/Info.plist"
           plutil -lint "$APP/Contents/Resources/zh-Hans.lproj/Localizable.strings"
           plutil -lint "$APP/Contents/Resources/zh-Hans.lproj/InfoPlist.strings"
